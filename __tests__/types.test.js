@@ -1,5 +1,7 @@
 const {
   isNumber,
+  isString,
+  isBoolean,
   castToNumber,
   getCaster
 } = require('../lib/types.js');
@@ -13,6 +15,25 @@ describe('validator module', () => {
       expect(isNumber({})).toBeFalsy();
       expect(isNumber(() => {})).toBeFalsy();
       expect(isNumber(true)).toBeFalsy();
+    });
+
+    it('validates for a string', () => {
+      expect(isString('hi')).toBeTruthy();
+      expect(isString('')).toBeTruthy();
+      expect(isString(3)).toBeFalsy();
+      expect(isString([])).toBeFalsy();
+      expect(isString({})).toBeFalsy();
+      expect(isString(() => {})).toBeFalsy();
+      expect(isString(true)).toBeFalsy();
+    });
+
+    it('boolean', () => {
+      expect(isBoolean(false)).toBeTruthy();
+      expect(isBoolean(3)).toBeFalsy();
+      expect(isBoolean('hi')).toBeFalsy();
+      expect(isBoolean([])).toBeFalsy();
+      expect(isBoolean({})).toBeFalsy();
+      expect(isBoolean(() => {})).toBeFalsy();
     });
   });
 
